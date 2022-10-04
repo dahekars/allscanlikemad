@@ -8,8 +8,8 @@ the tools is under construction i hope you don't mind
 
 ## Current Scanners
 ****
-subdomains 
-package confusion vulnerabilities
+subdomains \n
+package confusion vulnerabilities \n
 ****
 
 ## tools using currentlly in tools 
