@@ -8,17 +8,23 @@ the tools is under construction i hope you don't mind
 
 ## Current Scanners
 ****
-subdomains 
-package confusion vulnerabilities
+subdomains
+
+package confusion vulnerabilities 
 ****
 
 ## tools using currentlly in tools 
 ***
 subfinders
+
 amass
+
 fff
+
 httpx
+
 httprobe
+
 nucleii
 ***
 
