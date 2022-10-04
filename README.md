@@ -11,6 +11,8 @@ the tools is under construction i hope you don't mind
 subdomains
 
 package confusion vulnerabilities 
+
+directory Scan (feroxbuster)
 ****
 
 ## tools using currentlly in tools 
@@ -26,6 +28,8 @@ httpx
 httprobe
 
 nucleii
+
+feroxbuster
 ***
 
 __Best of luck! 
