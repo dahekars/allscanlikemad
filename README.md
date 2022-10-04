@@ -7,17 +7,19 @@ i am making a custom automation tool scanning process for vulnerabilities using 
 the tools is under construction i hope you don't mind 
 
 ## Current Scanners
-!!! subdomains
-!!! package confusion vulnerabilities
-
+****
+subdomains 
+package confusion vulnerabilities
+****
 
 ## tools using currentlly in tools 
-!!! subfinders
-!!! amass
-!!! fff
-!!! httpx
-!!! httprobe
-!!! nucleii
+***
+subfinders
+amass
+fff
+httpx
+httprobe
+nucleii
+***
 
-
-*** Best of luck! ***
+__Best of luck! 
