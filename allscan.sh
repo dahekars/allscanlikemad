@@ -46,7 +46,8 @@ done
 
 for file in $(cat $storage_dir/domain200 | cut -d' ' -f1)
 do 
-    ./feroxbuster -d $file -w ~/go/bin/directory-list.txt -o "$storage_dir/domainferox_($file).txt" -t 100 
+    filename=$(echo $file | md5sum | cut -d' ' -f1)
+    ./feroxbuster -d $file -w ~/go/bin/directory-list.txt -o "$storage_dir/domainferox_($filename).txt" -t 100 
 done
 
 
