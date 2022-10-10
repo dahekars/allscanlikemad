@@ -4,7 +4,7 @@ target_name=$1
 target_dir=$2
 
 sudo apt update -y 
-sudo apt install -y snap jq unzip
+sudo apt install -y snap jq unzip tmux
 sudo snap install  go --classic
 
 go install github.com/tomnomnom/fff@latest
@@ -47,7 +47,7 @@ done
 for file in $(cat $storage_dir/domain200 | cut -d' ' -f1)
 do 
     filename=$(echo $file | md5sum | cut -d' ' -f1)
-    ./feroxbuster -d $file -w ~/go/bin/directory-list.txt -o "$storage_dir/domainferox_($filename).txt" -t 100 
+    ./feroxbuster -u $file -w ~/go/bin/directory-list.txt -o "$storage_dir/domainferox_($filename).txt" -t 100 
 done
 
 
