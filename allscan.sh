@@ -4,7 +4,7 @@ target_name=$1
 target_dir=$2
 
 sudo apt update -y 
-sudo apt install -y snap jq unzip tmux
+sudo apt install -y snap jq unzip tmux gcc
 sudo snap install  go --classic
 
 go install github.com/tomnomnom/fff@latest
@@ -16,7 +16,18 @@ go install github.com/tomnomnom/httprobe@latest
 
 curl -sL "https://raw.githubusercontent.com/epi052/feroxbuster/master/install-nix.sh" | bash
 
-wget "https://raw.githubusercontent.com/projectdiscovery/nuclei-templates/master/exposures/configs/package-json.yaml" -O ~/go/bin/nuclei_package_scan.yaml
+#wget "https://raw.githubusercontent.com/projectdiscovery/nuclei-templates/master/exposures/configs/package-json.yaml" -O ~/go/bin/nuclei_package_scan.yaml
+
+wget "https://github.com/projectdiscovery/nuclei-templates/archive/refs/heads/master.zip" -O nuclei-temp.zip
+
+unzip nuclei-temp.zip 
+
+mkdir temp-file
+
+for line in $(find ./nuclei-templates-master/ -type f -name \*.yaml)
+	do
+		mv $line ./temp-file/ -v
+	done
 
 storage_dir=$target_dir/$target_name
 
@@ -31,7 +42,15 @@ domains_list=$storage_dir/domain
 
 ~/go/bin/httpx -l $domains_list -o $storage_dir/domain_file_for_nuclei; wc -l $storage_dir/*
 
-~/go/bin/nuclei -l $storage_dir/domain_file_for_nuclei -t ~/go/bin/nuclei_package_scan.yaml -o $storage_dir/nuclei_package_scan 
+for yamlfile in $(find ./temp-file/ -type f -name \*.yaml | rev | cut -d "/" -f 1 | rev | cut -d "." -f 1)
+do 
+
+echo -e "\n Scan for $yamlfile scan \n"
+
+~/go/bin/nuclei -l $storage_dir/domain_file_for_nuclei -t ./temp-file/$yamlfile* -o "$storage_dir/domain_$yamlfile"
+done
+
+#for yamlname in $(find ./temp-file/ -type f -name \*.yaml | rev | cut -d "/" -f 1 | rev | cut -d "." -f 1) ; do touch domain_$yamlname; done
 
 cat $storage_dir/nuclei_package_scan | cut -d' ' -f6 | ~/go/bin/fff -s 200 -o $storage_dir/package_scan
 
